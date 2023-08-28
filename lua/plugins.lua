@@ -8,6 +8,15 @@
 require "helpers/globals"
 
 return {
+  -- https://github.com/numToStr/Comment.nvim {{{
+  {
+    'numToStr/Comment.nvim',
+    opts = {
+        -- add any options here
+    },
+    lazy = false,
+  },
+  -- }}}
   -- Mason {{{
   {
     "williamboman/mason.nvim",
@@ -114,14 +123,23 @@ return {
   },
   -- }}}
 
-  -- Theme: Sonokai {{{
-  {
-    "sainnhe/sonokai",
-    lazy = false,
+  -- Theme: {{{
+  -- {
+  --   "sainnhe/sonokai",
+  --   lazy = false,
+  --   config = function ()
+  --     require "extensions.colorscheme.sonokai"
+  --   end
+  -- },
+
+  { 
+    "ellisonleao/gruvbox.nvim", 
+    priority = 1000,
     config = function ()
-      require "extensions.colorscheme.sonokai"
+      require "extensions.colorscheme.gruvbox"
     end
-  },
+  }
+
   -- }}}
 
 }

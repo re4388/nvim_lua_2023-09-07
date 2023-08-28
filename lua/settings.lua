@@ -12,6 +12,28 @@ cmd[[filetype plugin on]]
 -- Disable comments on pressing Enter
 cmd[[autocmd FileType * setlocal formatoptions-=cro]]
 
+
+-- highlight_yank
+cmd[[autocmd FileType * setlocal formatoptions-=cro]]
+
+
+-- highlight yanked text for 200ms using the "Visual" highlight group
+cmd[[
+augroup highlight_yank
+autocmd!
+au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Visual", timeout=200})
+augroup END
+]]
+
+
+-- persistent undo, Maintain undo history between sessions
+opt.undofile = true
+opt.number = true
+opt.relativenumber = true
+
+
+
+
 -- Tabs {{{
 opt.expandtab = true                -- Use spaces by default
 opt.shiftwidth = 2                  -- Set amount of space characters, when we press "<" or ">"
@@ -25,7 +47,8 @@ opt.fixeol = false -- Turn off appending new line in the end of a file
 -- }}}
 
 -- Folding {{{
-opt.foldmethod = 'syntax'
+opt.foldenable = false
+-- opt.foldmethod = 'syntax'
 -- }}}
 
 -- Search {{{
@@ -44,6 +67,9 @@ opt.splitright = true               -- Put new vertical splits to right
 opt.wildmenu = true
 opt.wildmode = "longest:full,full"
 -- }}}
+
+
+
 
 -- Default Plugins {{{
 local disabled_built_ins = {

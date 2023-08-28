@@ -12,6 +12,8 @@ mason.setup()
 mason_lspconfig.setup({
   ensure_installed = {
     "lua_ls",             -- LSP for Lua language
+    "bashls",             -- LSP for Lua language
+    "clangd",             -- LSP for Lua language
     "tsserver",           -- LSP for Typescript and Javascript
     "emmet_ls",           -- LSP for Emmet (Vue, HTML, CSS)
     "cssls",              -- LSP for CSS
