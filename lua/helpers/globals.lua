@@ -7,3 +7,4 @@ opt = vim.opt; -- Vim optionals
 
 -- theme = "sonokai"
 theme = "gruvbox"
+

@@ -44,3 +44,5 @@ You can use this template with the following command:
 - [trouble.nvim](https://github.com/folke/trouble.nvim)
 - [Tree Sitter](https://github.com/tree-sitter/tree-sitter)
 - [sonokai](https://github.com/sainnhe/sonokai)
+
+

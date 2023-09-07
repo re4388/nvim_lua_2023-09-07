@@ -1,23 +1,42 @@
---[[
-  File: plugins.lua
-  Description: This file needed for loading plugin list into lazy.nvim and loading plugins
-  Info: Use <zo> and <zc> to open and close foldings
-  See: https://github.com/folke/lazy.nvim
-]]
-
 require "helpers/globals"
 
 return {
-  -- https://github.com/numToStr/Comment.nvim {{{
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end
+  },
+  -- {
+  --   'theprimeagen/harpoon',
+  --   lazy = false,
+  --   config = function ()
+  --     require "extensions.harpoon"
+  --   end
+  -- },
+
+  -- Lualine
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons"
+    },
+  },
+
+
+  -- https://github.com/numToStr/Comment.nvim
   {
     'numToStr/Comment.nvim',
     opts = {
-        -- add any options here
+      -- add any options here
     },
     lazy = false,
   },
-  -- }}}
-  -- Mason {{{
+  -- Mason
   {
     "williamboman/mason.nvim",
     build = ":MasonUpdate",
@@ -29,23 +48,31 @@ return {
       require "extensions.mason"
     end
   },
-  -- }}}
 
-  -- Neo Tree {{{
+
+
+  -- vim-scripts/ReplaceWithRegister
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v2.x",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-    },
-    config = function ()
-      require "extensions.neotree"
+    "vim-scripts/ReplaceWithRegister",
+    config = function()
     end
   },
-  -- }}}
 
-  -- Telescope {{{
+
+  -- Neo Tree
+  -- {
+  --   "nvim-neo-tree/neo-tree.nvim",
+  --   branch = "v2.x",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "MunifTanjim/nui.nvim",
+  --   },
+  --   config = function ()
+  --     require "extensions.neotree"
+  --   end
+  -- },
+
+  -- Telescope
   {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.1',
@@ -58,9 +85,8 @@ return {
       require "extensions.telescope"
     end
   },
-  -- }}}
 
-  -- CMP {{{
+  -- CMP
   {
     'hrsh7th/nvim-cmp',
     event = "InsertEnter",
@@ -78,9 +104,15 @@ return {
       require "extensions.cmp"
     end
   },
-  -- }}}
+  -- Bufferline
+  {
+    "akinsho/bufferline.nvim",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons"
+    },
+  },
 
-  -- LSP Kind {{{
+  -- LSP Kind
   {
     'onsails/lspkind-nvim',
     lazy = true,
@@ -88,30 +120,28 @@ return {
       require "extensions.lspkind"
     end
   },
+
+  -- Git Signs
+  -- {
+  --   'lewis6991/gitsigns.nvim',
+  --   lazy = false,
+  --   config = function()
+  --     require "extensions.gitsigns"
+  --   end
+  -- },
+
+  -- Trouble
+  -- {
+  --   "folke/trouble.nvim",
+  --   lazy = true,
+  --   dependencies = "kyazdani42/nvim-web-devicons",
+  --   config = function()
+  --     require "extensions.trouble"
+  --   end,
+  -- },
   -- }}}
 
-  -- Git Signs{{{
-  {
-    'lewis6991/gitsigns.nvim',
-    lazy = false,
-    config = function()
-      require "extensions.gitsigns"
-    end
-  },
-  -- }}}
-
-  -- Trouble {{{
-  {
-    "folke/trouble.nvim",
-    lazy = true,
-    dependencies = "kyazdani42/nvim-web-devicons",
-    config = function()
-      require "extensions.trouble"
-    end,
-  },
-  -- }}}
-
-  -- TreeSitter {{{
+  -- TreeSitter
   {
     "nvim-treesitter/nvim-treesitter",
     lazy = false,
@@ -121,9 +151,8 @@ return {
       require "extensions.treesitter"
     end
   },
-  -- }}}
 
-  -- Theme: {{{
+  -- Theme:
   -- {
   --   "sainnhe/sonokai",
   --   lazy = false,
@@ -132,16 +161,12 @@ return {
   --   end
   -- },
 
-  { 
-    "ellisonleao/gruvbox.nvim", 
+  {
+    "ellisonleao/gruvbox.nvim",
     priority = 1000,
-    config = function ()
+    config = function()
       require "extensions.colorscheme.gruvbox"
     end
   }
 
-  -- }}}
-
 }
-
--- vim:tabstop=2 shiftwidth=2 expandtab syntax=lua foldmethod=marker foldlevelstart=0 foldlevel=0
