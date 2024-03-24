@@ -11,10 +11,6 @@ call plug#begin(stdpath('config') . '/plugged')
 -- g = vim.g;     -- Vim globals
 -- opt = vim.opt; -- Vim optionals
 
-
-
-
-
 -- 這邊都是 vscode 的設定
 if vim.g.vscode then
   -- 可以這樣設計，還沒設定
@@ -25,6 +21,8 @@ if vim.g.vscode then
   vim.cmd [[
 
   nnoremap qq yiw
+  nnoremap H ^
+  nnoremap L $
 
 
 
@@ -90,7 +88,6 @@ end
 
 vim.cmd [[
 call plug#begin()
-
 
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'

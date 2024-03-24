@@ -1,6 +1,24 @@
 require "helpers/globals"
 
 return {
+
+  -- -- {
+  -- --   'codota/tabnine-nvim',
+  -- --   build = "./dl_binaries.sh"
+  -- -- },
+  -- {
+  --   "chrisgrieser/nvim-various-textobjs",
+  --   lazy = false,
+  --   opts = { useDefaultKeymaps = true },
+  -- },
+
+  -- {
+  --   'tzachar/cmp-tabnine',
+  --   build = './install.sh',
+  --   dependencies = 'hrsh7th/nvim-cmp',
+  -- },
+
+
   {
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -14,18 +32,18 @@ return {
   -- {
   --   'theprimeagen/harpoon',
   --   lazy = false,
-  --   config = function ()
+  --   config = function()
   --     require "extensions.harpoon"
   --   end
   -- },
 
   -- Lualine
-  {
-    "nvim-lualine/lualine.nvim",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons"
-    },
-  },
+  -- {
+  --   "nvim-lualine/lualine.nvim",
+  --   dependencies = {
+  --     "nvim-tree/nvim-web-devicons"
+  --   },
+  -- },
 
 
   -- https://github.com/numToStr/Comment.nvim
@@ -36,6 +54,8 @@ return {
     },
     lazy = false,
   },
+
+
   -- Mason
   {
     "williamboman/mason.nvim",
@@ -60,17 +80,17 @@ return {
 
 
   -- Neo Tree
-  -- {
-  --   "nvim-neo-tree/neo-tree.nvim",
-  --   branch = "v2.x",
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --     "MunifTanjim/nui.nvim",
-  --   },
-  --   config = function ()
-  --     require "extensions.neotree"
-  --   end
-  -- },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v2.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+    },
+    config = function()
+      require "extensions.neotree"
+    end
+  },
 
   -- Telescope
   {
@@ -105,12 +125,12 @@ return {
     end
   },
   -- Bufferline
-  {
-    "akinsho/bufferline.nvim",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons"
-    },
-  },
+  -- {
+  --   "akinsho/bufferline.nvim",
+  --   dependencies = {
+  --     "nvim-tree/nvim-web-devicons"
+  --   },
+  -- },
 
   -- LSP Kind
   {
@@ -122,24 +142,24 @@ return {
   },
 
   -- Git Signs
-  -- {
-  --   'lewis6991/gitsigns.nvim',
-  --   lazy = false,
-  --   config = function()
-  --     require "extensions.gitsigns"
-  --   end
-  -- },
+  {
+    'lewis6991/gitsigns.nvim',
+    lazy = false,
+    config = function()
+      require "extensions.gitsigns"
+    end
+  },
 
   -- Trouble
-  -- {
-  --   "folke/trouble.nvim",
-  --   lazy = true,
-  --   dependencies = "kyazdani42/nvim-web-devicons",
-  --   config = function()
-  --     require "extensions.trouble"
-  --   end,
-  -- },
-  -- }}}
+  {
+    "folke/trouble.nvim",
+    lazy = true,
+    dependencies = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require "extensions.trouble"
+    end,
+  },
+
 
   -- TreeSitter
   {

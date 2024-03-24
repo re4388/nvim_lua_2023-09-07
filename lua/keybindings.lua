@@ -1,8 +1,7 @@
 require "helpers/globals"
 require "helpers/keyboard"
 
-g.mapleader =
-' '               -- Use Space, like key for alternative hotkeys
+g.mapleader = ' ' -- Use Space, like key for alternative hotkeys
 
 -- vim keyboard cheatsheet: https://vim.rtorr.com/
 
@@ -14,9 +13,14 @@ nm('<C-q>', '<C-O>') -- go back
 nm('<C-a>', '<C-I>') -- go forward
 
 
+-- 怪怪的
+-- nm('<ESC>4', '<%>')
+
+
 -- let's make life easier
 -- nnoremap qq -> yiw
 nm('qq', 'yiw')
+
 -- nm('<leader>c', 'yiwoconsole.log("<Esc>p<Esc>")')
 
 --
@@ -25,8 +29,10 @@ nm('qq', 'yiw')
 --     nnoremap <silent> <buffer> ,cl :silent put=['// tslint:disable-next-line', 'console.log(\"<C-r><C-w>\", <C-r><C-w>);']<CR>-2==+
 -- ]],
 -- true)
+
+
 vim.api.nvim_exec(
-     [[
+  [[
      " 下面多一行 console.log("xxx)
      " xxx 是目前 curosor 上的 word
      nnoremap <silent> <buffer> <leader>c :silent put=['console.log(\"<C-r><C-w>\", <C-r><C-w>);']<CR>-2==+
@@ -54,7 +60,7 @@ vim.api.nvim_exec(
 
 
 
-     true)
+  true)
 
 
 
@@ -62,15 +68,15 @@ vim.api.nvim_exec(
 -- api.nvim_set_keymap('n', '<leader>j', '*', { noremap = true })
 
 -- quick move
-nm('<S-j>', '20gj')
-nm('<S-k>', '20gk')
-vm('<S-j>', '20gj')
-vm('<S-j>', '20gk')
+-- nm('<S-j>', '20gj')
+-- nm('<S-k>', '20gk')
+-- vm('<S-j>', '20gj')
+-- vm('<S-j>', '20gk')
 
 
 -- H and L to go to line being and end
--- nm('H', '^')
--- nm('L', '$')
+nm('H', '^')
+nm('L', '$')
 
 
 
@@ -80,10 +86,6 @@ vm('<S-j>', '20gk')
 -- vm('<leader>d', 'YPgv')
 
 
--- LSP 相關
-
--- Telescope {{{
-nm('<C-d>', '<cmd>Telescope lsp_definitions<CR>') -- Goto declaration
 
 
 
@@ -99,10 +101,10 @@ nm('<C-l>', '<C-W>l')
 -- api.nvim_set_keymap('n', '<C-k>', '<C-W>k', { noremap = true })
 -- api.nvim_set_keymap('n', '<C-l>', '<C-W>l', { noremap = true })
 
-nm('qh', '<cmd>vertical resize +2<CR>')
-nm('ql', '<cmd>vertical resize -2<CR>')
-nm('qk', '<cmd>resize -2<CR>')
-nm('qj', '<cmd>resize +2<CR>')
+nm('<C-Left>', '<cmd>vertical resize +2<CR>')
+nm('<C-Right>', '<cmd>vertical resize -2<CR>')
+nm('<C-Up>', '<cmd>resize -2<CR>')
+nm('<C-Down>', '<cmd>resize +2<CR>')
 -- " nnoremap <C-Left> :vertical resize +2<cr>
 -- " nnoremap <C-Right> :vertical resize -2<cr>
 -- " nnoremap <C-Up> :resize -2<cr>
@@ -112,13 +114,13 @@ nm('qj', '<cmd>resize +2<CR>')
 -- nnoremap <leader>n :noh<cr>
 
 -- 跳出一個 LIST 相關
-nm('<leader>j', '<cmd>Telescope jumplist<CR>') -- Show jumplist (previous locations)
-nm('<C-2>', '<cmd>Telescope marks<CR>')        -- Show marks (previous locations)
-nm('<C-e>', '<cmd>Telescope git_files<CR>')    -- Search for a file in project
-nm('<C-s>', '<cmd>Telescope live_grep<CR>')    -- Find a string in project
-nm('<C-n>', '<cmd>Telescope lsp_document_symbols<CR>')
-nm('<leader>b', '<cmd>Telescope buffers<CR>')  -- Show all buffers
-nm('<leader>z', '<cmd>Telescope<CR>')          -- Show all commands
+-- nm('<leader>j', '<cmd>Telescope jumplist<CR>') -- Show jumplist (previous locations)
+nm('<C-2>', '<cmd>Telescope marks<CR>')       -- Show marks (previous locations)
+nm('<C-e>', '<cmd>Telescope git_files<CR>')   -- Search for a file in project
+nm('<C-s>', '<cmd>Telescope live_grep<CR>')   -- Find a string in project
+-- nm('<C-n>', '<cmd>Telescope lsp_document_symbols<CR>')
+nm('<leader>b', '<cmd>Telescope buffers<CR>') -- Show all buffers
+-- nm('<leader>z', '<cmd>Telescope<CR>')         -- Show all commands
 -- nm('<leader>p', '<cmd>Telescope oldfiles<CR>')                                   -- Show recent files
 -- nm('<leader>o', '<cmd>Telescope find_files<CR>')                                 -- Search for a file (ignoring git-ignore)
 -- nm('<leader>b', '<cmd>Telescope git_branches<CR>')                               -- Show git branches
@@ -126,18 +128,15 @@ nm('<leader>z', '<cmd>Telescope<CR>')          -- Show all commands
 
 
 
--- LSP {{{
+-- LSP 相關
+-- Telescope {{{
+nm('<C-d>', '<cmd>Telescope lsp_definitions<CR>') -- Goto definition
 -- nm('K', '<cmd>lua vim.lsp.buf.hover()<CR>' )                                      -- Hover object
 -- nm('ga', '<cmd>lua vim.lsp.buf.code_action()<CR>')                                -- Code actions
 nm('<C-p>', '<cmd>lua vim.lsp.buf.rename()<CR>') -- Rename an object
 -- nm('gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')                                -- Go to declaration
 -- nm('gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')                                -- Go to declaration
 -- }}}
-
-
-
-
-
 
 -- Trouble {{{
 -- nm('<leader>x', '<cmd>TroubleToggle<CR>')                                         -- Show all problems in project (with help of LSP)
@@ -172,8 +171,5 @@ nm('<C-1>', '<cmd>NeoTreeFocusToggle<CR>') -- Toggle file explorer
 -- nmap qB ysiwB
 -- nmap qt ysiw<
 -- nmap q[ ysiw[
-
-
-
 
 -- vim:tabstop=2 shiftwidth=2 expandtab syntax=lua foldmethod=marker foldlevelstart=0 foldlevel=0

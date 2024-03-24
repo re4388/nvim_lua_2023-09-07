@@ -7,10 +7,10 @@
 local cmp = require('cmp')
 local lspkind = require('lspkind')
 
-cmp.setup{
+cmp.setup {
   snippet = {
     expand = function(args)
-      require'luasnip'.lsp_expand(args.body) -- Luasnip expand
+      require 'luasnip'.lsp_expand(args.body) -- Luasnip expand
     end,
   },
 
@@ -30,11 +30,15 @@ cmp.setup{
     }),
 
     -- Use <C-p> and <C-n> to navigate through completion variants
+    -- 這邊 tab 已經被 tabnine 用了
     -- ['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
     -- ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
 
-    ['<S-Tab>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
     ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
+    ['<S-Tab>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
+
+    ['<Down>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
+    ['<Up>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
 
 
 
@@ -48,6 +52,7 @@ cmp.setup{
     { name = 'buffer' },                  -- Buffers
     { name = 'path' },                    -- Paths
     { name = "emoji" },                   -- Emoji
+    { name = 'cmp_tabnine' },
   }, {
   }),
   formatting = {
@@ -60,4 +65,3 @@ cmp.setup{
 
 -- Add snippets from Friendly Snippets
 require("luasnip/loaders/from_vscode").lazy_load()
-
