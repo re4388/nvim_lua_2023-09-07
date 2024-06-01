@@ -13,9 +13,11 @@ call plug#begin(stdpath('config') . '/plugged')
 
 -- 這邊都是 vscode 的設定
 if vim.g.vscode then
+  print("init.lua begin init in vscode..")
   -- 可以這樣設計，還沒設定
   -- vim.cmd[[source $HOME/.config/nvim/vscode/settings.vim]]
 
+  -- 這個值表示 Vim 將使用系統的主要剪貼簿
   vim.opt.clipboard = 'unnamedplus'
 
   vim.cmd [[
@@ -25,12 +27,31 @@ if vim.g.vscode then
   nnoremap L $
 
 
+  " move current line up and down faster
+  nnoremap qj 20gj
+  nnoremap qk 20gk
+  vnoremap qj 20gj
+  vnoremap qk 20gk
+
+
+  " eaiser surrounding vim, 因為 "增加"操作比較複雜，一律用 q replace ysiw
+  nmap q` ysiw`
+  nmap q" ysiw"
+  nmap q' ysiw'
+  nmap qb ysiwb
+  nmap qB ysiwB
+  nmap qt ysiw<
+  nmap q[ ysiw[
+  " don't forget you can use S in visual mode...
+
+
 
   augroup highlight_yank
     autocmd!
     au TextYankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=200 }
   augroup END
 ]]
+  print("init.lua finish loaded in vscode")
 else -- else 底下的都是專屬於 terminal neovim 的設定
   -- Bootsraping plugin manager
   require "lazy-bootstrap"
@@ -80,20 +101,34 @@ else -- else 底下的都是專屬於 terminal neovim 的設定
 end
 
 
+-- 以下都是要讓 vscode 和 nvim 可以 "共享" 的設定
 
 
-
--- 以下都是要讓 vscode 和 nvim 可以"共享" 的設定
-
-
+-- text object 系列
+-- kana/vim-textobj-user: 下面的 text object plug-in based on this
+-- kana/vim-textobj-entire: entire buffer as text object
+-- beloglazov/vim-textobj-quotes -> use q as "", '', `` 的 text obejct
+-- kana/vim-textobj-function -> not use, only for Java, C and vim lang
+-- Julian/vim-textobj-brace -> 自動找到最近的 (), [], {}
+-- vim-scripts/ReplaceWithRegister -> gr as prefix to replace text object
+-- tpope/vim-repeat -> 讓你的一些 vim text object 的操作也可以套用在 dot operation 上, 也可以自己增加支援
 vim.cmd [[
 call plug#begin()
 
 Plug 'kana/vim-textobj-user'
+Plug 'beloglazov/vim-textobj-quotes'
 Plug 'kana/vim-textobj-entire'
+Plug 'Julian/vim-textobj-brace'
+
+
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
 
 call plug#end()
 ]]
+
+
+
+-- hello world
