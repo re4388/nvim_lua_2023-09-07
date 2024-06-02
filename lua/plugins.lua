@@ -6,17 +6,35 @@ return {
   -- --   'codota/tabnine-nvim',
   -- --   build = "./dl_binaries.sh"
   -- -- },
-  -- {
-  --   "chrisgrieser/nvim-various-textobjs",
-  --   lazy = false,
-  --   opts = { useDefaultKeymaps = true },
-  -- },
+  {
+    "chrisgrieser/nvim-various-textobjs",
+    lazy = false,
+    opts = { useDefaultKeymaps = true },
+  },
 
   -- {
   --   'tzachar/cmp-tabnine',
   --   build = './install.sh',
   --   dependencies = 'hrsh7th/nvim-cmp',
   -- },
+
+
+  -- { "kana/vim-textobj-user" },
+  -- { "beloglazov/vim-textobj-quotes" },
+  -- { "kana/vim-textobj-entire" },
+  -- { "Julian/vim-textobj-brace" },
+  -- { "tpope/vim-surround" },
+  -- { "vim-scripts/ReplaceWithRegister" },
+  -- { "tpope/vim-commentary" },
+  -- { "tpope/vim-repeat" },
+
+
+  -- vim - scripts / ReplaceWithRegister
+  {
+    "vim-scripts/ReplaceWithRegister",
+    config = function()
+    end
+  },
 
 
   {
@@ -29,6 +47,7 @@ return {
       })
     end
   },
+
   -- {
   --   'theprimeagen/harpoon',
   --   lazy = false,
@@ -46,14 +65,14 @@ return {
   -- },
 
 
-  -- https://github.com/numToStr/Comment.nvim
-  {
-    'numToStr/Comment.nvim',
-    opts = {
-      -- add any options here
-    },
-    lazy = false,
-  },
+  -- -- https://github.com/numToStr/Comment.nvim
+  -- {
+  --   'numToStr/Comment.nvim',
+  --   opts = {
+  --     -- add any options here
+  --   },
+  --   lazy = false,
+  -- },
 
 
   -- Mason
@@ -71,12 +90,6 @@ return {
 
 
 
-  -- vim-scripts/ReplaceWithRegister
-  {
-    "vim-scripts/ReplaceWithRegister",
-    config = function()
-    end
-  },
 
 
   -- Neo Tree
@@ -181,12 +194,12 @@ return {
   --   end
   -- },
 
-  {
-    "ellisonleao/gruvbox.nvim",
-    priority = 1000,
-    config = function()
-      require "extensions.colorscheme.gruvbox"
-    end
-  }
+  -- {
+  --   "ellisonleao/gruvbox.nvim",
+  --   priority = 1000,
+  --   config = function()
+  --     require "extensions.colorscheme.gruvbox"
+  --   end
+  -- }
 
 }

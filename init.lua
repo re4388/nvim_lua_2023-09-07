@@ -11,7 +11,7 @@ call plug#begin(stdpath('config') . '/plugged')
 -- g = vim.g;     -- Vim globals
 -- opt = vim.opt; -- Vim optionals
 
--- 這邊都是 vscode 的設定
+-- 這邊都是 vscode 的熱鍵設定, 和 terminal 版本沒有共享熱鍵喔
 if vim.g.vscode then
   print("init.lua begin init in vscode..")
   -- 可以這樣設計，還沒設定
@@ -20,12 +20,21 @@ if vim.g.vscode then
   -- 這個值表示 Vim 將使用系統的主要剪貼簿
   vim.opt.clipboard = 'unnamedplus'
 
+  -- 如果你要 map 過去另外一邊有 plug 的熱鍵，像是 "gr"iw 中的 gr
+  -- 那你需要使用 nmap (會 resursive 到 plug in 熱鍵), 無法用 nnoremap (non-resursive)
+
   vim.cmd [[
 
   nnoremap qq yiw
-  nnoremap H ^
-  nnoremap L $
+  nmap qj griw
+  nmap qs yiq
 
+
+  " nnoremap H ^
+  " nnoremap L $
+
+  " remove highlight when hit enter
+  nnoremap <silent> <cr> :noh<cr><cr>
 
   " move current line up and down faster
   nnoremap qj 20gj
@@ -34,16 +43,17 @@ if vim.g.vscode then
   vnoremap qk 20gk
 
 
-  " eaiser surrounding vim, 因為 "增加"操作比較複雜，一律用 q replace ysiw
-  nmap q` ysiw`
-  nmap q" ysiw"
-  nmap q' ysiw'
-  nmap qb ysiwb
-  nmap qB ysiwB
-  nmap qt ysiw<
-  nmap q[ ysiw[
-  " don't forget you can use S in visual mode...
-
+  " eaiser surrounding vim, 因為 "增加"操作比較複雜，一律用 s replace ysiw
+  nmap s` ysiw`
+  nmap s" ysiw"
+  nmap s' ysiw'
+  nmap sb ysiwb
+  nmap sB ysiwB
+  nmap s< ysiw<
+  nmap s{ ysiw{
+  nmap s( ysiw(
+  nmap s[ ysiw[
+  nmap s* ysiw*
 
 
   augroup highlight_yank
@@ -64,7 +74,6 @@ else -- else 底下的都是專屬於 terminal neovim 的設定
   local lazy = require("lazy")
   lazy.setup("plugins")
   -- }}}
-
 
 
 

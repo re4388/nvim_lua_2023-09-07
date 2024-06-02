@@ -1,35 +1,52 @@
 require "helpers/globals"
 require "helpers/keyboard"
 
+-- vim keyboard cheatsheet: https://vim.rtorr.com/
 g.mapleader = ' ' -- Use Space, like key for alternative hotkeys
 
--- vim keyboard cheatsheet: https://vim.rtorr.com/
 
-
-
--- 更方便的操作
 -- go back and go forward (jumpList)
-nm('<C-q>', '<C-O>') -- go back
-nm('<C-a>', '<C-I>') -- go forward
-
-
--- 怪怪的
--- nm('<ESC>4', '<%>')
-
+vim.api.nvim_set_keymap('n', '<C-q>', '<C-o>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-a>', '<C-i>', { noremap = true })
 
 -- let's make life easier
--- nnoremap qq -> yiw
-nm('qq', 'yiw')
+vim.api.nvim_set_keymap('n', 'qq', 'yiw', { noremap = true })
+-- r as replace
+vim.api.nvim_set_keymap('n', 'qr', 'griw', { noremap = false })
 
--- nm('<leader>c', 'yiwoconsole.log("<Esc>p<Esc>")')
+-- qs to copy string quicker
+vim.api.nvim_set_keymap('n', 'qs', 'yiq', { noremap = false })
 
---
--- vim.api.nvim_exec(
--- [[
---     nnoremap <silent> <buffer> ,cl :silent put=['// tslint:disable-next-line', 'console.log(\"<C-r><C-w>\", <C-r><C-w>);']<CR>-2==+
--- ]],
--- true)
 
+-- quick move
+vim.api.nvim_set_keymap('n', 'qj', '20gj', { noremap = true })
+vim.api.nvim_set_keymap('n', 'qk', '20gk', { noremap = true })
+vim.api.nvim_set_keymap('v', 'qj', '20gj', { noremap = true })
+vim.api.nvim_set_keymap('v', 'qk', '20gk', { noremap = true })
+
+-- surround vim or other
+vim.api.nvim_set_keymap('n', "s'", "ysiw'", { noremap = true })
+vim.api.nvim_set_keymap('n', 's"', 'ysiw"', { noremap = true })
+vim.api.nvim_set_keymap('n', 's`', 'ysiw`', { noremap = true })
+vim.api.nvim_set_keymap('n', 'sb', 'ysiwb', { noremap = true })
+vim.api.nvim_set_keymap('n', 'sB', 'ysiwB', { noremap = true })
+vim.api.nvim_set_keymap('n', 'st', 'ysiw<', { noremap = true })
+vim.api.nvim_set_keymap('n', 's[', 'ysiw[', { noremap = true })
+vim.api.nvim_set_keymap('n', 's*', 'ysiw', { noremap = true })
+
+
+-- window switch between editor/buffer
+vim.api.nvim_set_keymap('n', '<S-h>', '<C-W>h', { noremap = true })
+vim.api.nvim_set_keymap('n', '<S-j>', '<C-W>j', { noremap = true })
+vim.api.nvim_set_keymap('n', '<S-k>', '<C-W>k', { noremap = true })
+vim.api.nvim_set_keymap('n', '<S-l>', '<C-W>l', { noremap = true })
+
+
+-----------------------------------------------------------
+-----------------------------------------------------------
+---  below shall be the keymap that is not the same as VSCODE
+-----------------------------------------------------------
+-----------------------------------------------------------
 
 vim.api.nvim_exec(
   [[
@@ -55,28 +72,19 @@ vim.api.nvim_exec(
     highlight! link TermCursor Cursor
     highlight! TermCursorNC guibg=red guifg=white ctermbg=1 ctermfg=15
      tnoremap <Esc> <C-\><C-n>
-]],
-
-
-
-
-  true)
+]], true)
 
 
 
 -- TODO: 還沒搞定
 -- api.nvim_set_keymap('n', '<leader>j', '*', { noremap = true })
 
--- quick move
--- nm('<S-j>', '20gj')
--- nm('<S-k>', '20gk')
--- vm('<S-j>', '20gj')
--- vm('<S-j>', '20gk')
 
 
 -- H and L to go to line being and end
-nm('H', '^')
-nm('L', '$')
+-- 拿掉, try to learn the native key!!
+-- nm('H', '^')
+-- nm('L', '$')
 
 
 
@@ -90,11 +98,6 @@ nm('L', '$')
 
 
 
--- window 管理
-nm('<C-h>', '<C-W>h')
-nm('<C-j>', '<C-W>j')
-nm('<C-k>', '<C-W>k')
-nm('<C-l>', '<C-W>l')
 
 -- api.nvim_set_keymap('n', '<C-h>', '<C-W>h', { noremap = true })
 -- api.nvim_set_keymap('n', '<C-j>', '<C-W>j', { noremap = true })
@@ -149,27 +152,15 @@ nm('<C-1>', '<cmd>NeoTreeFocusToggle<CR>') -- Toggle file explorer
 
 
 
-
-
-
--- todo: 看要用surround vim or other
--- nm('q`', 'ysiw`')
--- nm('q"', 'ysiw"')
--- nm('", "ysiw'")
--- nm('qb', 'ysiwb')
--- nm('qB', 'ysiwB')
--- nm('qt', 'ysiw<')
--- nm('q[', 'ysiw[')
-
 -- " move current line up and down
--- " eaiser surrounding vim
--- " don't forget you can use S in visual mode...
--- nmap q` ysiw`
--- nmap q" ysiw"
--- nmap q' ysiw'
--- nmap qb ysiwb
--- nmap qB ysiwB
--- nmap qt ysiw<
--- nmap q[ ysiw[
 
 -- vim:tabstop=2 shiftwidth=2 expandtab syntax=lua foldmethod=marker foldlevelstart=0 foldlevel=0
+
+-- nm('<leader>c', 'yiwoconsole.log("<Esc>p<Esc>")')
+
+--
+-- vim.api.nvim_exec(
+-- [[
+--     nnoremap <silent> <buffer> ,cl :silent put=['// tslint:disable-next-line', 'console.log(\"<C-r><C-w>\", <C-r><C-w>);']<CR>-2==+
+-- ]],
+-- true)
