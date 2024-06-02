@@ -25,11 +25,10 @@ return {
   -- { "Julian/vim-textobj-brace" },
   -- { "tpope/vim-surround" },
   -- { "vim-scripts/ReplaceWithRegister" },
-  -- { "tpope/vim-commentary" },
-  -- { "tpope/vim-repeat" },
+  { "tpope/vim-commentary" },
+  { "tpope/vim-repeat" },
 
 
-  -- vim - scripts / ReplaceWithRegister
   {
     "vim-scripts/ReplaceWithRegister",
     config = function()
