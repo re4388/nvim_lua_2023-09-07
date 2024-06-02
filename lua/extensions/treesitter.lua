@@ -17,16 +17,4 @@ require 'nvim-treesitter.configs'.setup {
   -- Install all parsers synchronously
   sync_install = false,
 
-  -- Подсветка
-  highlight = {
-    -- Enabling highlight for all files
-    enable = true,
-    disable = {},
-  },
-
-  indent = {
-    -- Disabling indentation for all files
-    enable = false,
-    disable = {},
-  }
 }
