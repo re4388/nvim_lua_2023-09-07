@@ -2,3 +2,5 @@ plugin
 
 plugged
 .vscode
+/plugged/vim-textobj-entire
+/plugged/ReplaceWithRegister
