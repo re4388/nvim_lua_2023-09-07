@@ -63,15 +63,11 @@ if vim.g.vscode then
 ]]
   print("init.lua finish loaded in vscode")
 else -- else 底下的都是專屬於 terminal neovim 的設定
-  --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
-  vim.g.mapleader = ' '
-  vim.g.maplocalleader = ' '
-
-  require "settings"
-
   -- Bootsraping plugin manager
   require "lazy-bootstrap"
 
+  -- Settings
+  require "settings"
   require "keybindings"
 
   -- Plugin management {{{
@@ -80,7 +76,6 @@ else -- else 底下的都是專屬於 terminal neovim 的設定
   -- }}}
 
 
-  -- Settings
 
   -- persistent undo, Maintain undo history between sessions
   opt.undofile = true
@@ -88,11 +83,6 @@ else -- else 底下的都是專屬於 terminal neovim 的設定
   opt.foldenable = false
 
 
-  -- https://github.com/gbprod/substitute.nvim
-  vim.keymap.set("n", "s", require('substitute').operator, { noremap = true })
-  vim.keymap.set("n", "ss", require('substitute').line, { noremap = true })
-  vim.keymap.set("n", "S", require('substitute').eol, { noremap = true })
-  vim.keymap.set("x", "s", require('substitute').visual, { noremap = true })
 
   -- Return to last edit position when opening files (You want this!)
   local api = vim.api
@@ -109,17 +99,14 @@ else -- else 底下的都是專屬於 terminal neovim 的設定
     end,
   })
 
-
-  -- Highlight when yanking (copying) text
-  --  Try it with `yap` in normal mode
-  --  See `:help vim.highlight.on_yank()`
-  vim.api.nvim_create_autocmd('TextYankPost', {
-    desc = 'Highlight when yanking (copying) text',
-    group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-    callback = function()
-      vim.highlight.on_yank()
-    end,
-  })
+  -- lua 版本的 highlight yank
+  -- highlight yanked text for 200ms using the "Visual" highlight group
+  vim.cmd [[
+  augroup highlight_yank
+  autocmd!
+  au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Visual", timeout=200})
+  augroup END
+  ]]
 end
 
 
@@ -150,3 +137,7 @@ Plug 'tpope/vim-repeat'
 
 call plug#end()
 ]]
+
+
+
+-- hello world
